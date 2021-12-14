@@ -1,0 +1,17 @@
+{
+  "projectName": "web",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "vue",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist",
+      "BuildCommand": "pnpm run build",
+      "StartCommand": "pnpm run preview"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}

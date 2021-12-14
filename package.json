@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "bootstrap": "(cd web && pnpm i -D) && (cd api && npm i -D)",
+    "not-starter": "(npm run web:init)",
+    "starter": "(npm run web:init) && (npm run web:auth) && (npm run web:hosting) && (npm run web:deploy) && (npm run api:init)",
+    "dev": "(cd web && pnpm run dev)",
+    "deploy": "(npm run api:deploy && npm run web:deploy)",
+    "api:init": "(cd api && sls)",
+    "api:deploy": "(cd api && sls deploy)",
+    "web:init": "(cd web && amplify init)",
+    "web:auth": "(cd web && amplify add auth && amplify push)",
+    "web:hosting": "(cd web && amplify add hosting && pnpm i)",
+    "web:deploy": "(cd web && amplify publish)"
+  }
+}
