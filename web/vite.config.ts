@@ -1,5 +1,6 @@
-// import path from 'path'
+import path from 'path'
 import { defineConfig } from 'vite'
+import PrerenderSPAPlugin from 'prerender-spa-plugin'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
@@ -17,6 +18,11 @@ export default defineConfig({
     ]
   },
   plugins: [
+    PrerenderSPAPlugin({
+      staticDir: path.join(__dirname, 'dist'),
+      routes: ['/', '/auth'],
+    }),
+
     Vue(),
 
     // https://github.com/hannoeru/vite-plugin-pages

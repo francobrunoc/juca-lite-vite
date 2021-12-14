@@ -19,6 +19,7 @@ service: api
 plugins:
   - serverless-bundle
   - serverless-deployment-bucket
+  - serverless-offline
 
 package:
   individually: true
@@ -58,7 +59,7 @@ iamRoleStatements:
       - Effect: Allow
         Action:
           - 'dynamodb:*'
-        Resource: '*'
+        Resource: ['arn:aws:dynamodb:${self:provider.region}:${file(./serverless.js):getAccountId}:table/juca-lite-demo']
 
             # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -172,4 +173,19 @@ resources:
     CognitoUserPool:
       Type: "AWS::Cognito::UserPool"
       Properties:
-        UserPoolName: web8b1098d3_userpool_8b1098d3-dev
+        # Change the property UserPoolName after creating the stack
+        UserPoolName: web3c7bf125_userpool_3c7bf125-dev
+        # (run amplify add auth first) and collect the name of user pool that will be created or use the aws console.
+
+    CognitoUserPoolClient:
+      Type: "AWS::Cognito::UserPoolClient"
+      Properties:
+        # Change the property ClientName after creating the stack
+        ClientName: web3c7bf125_app_clientWeb
+        # (run amplify add auth first) and collect the name of user pool that will be created or use the aws console.
+        GenerateSecret: False
+        UserPoolId:
+          Ref: CognitoUserPool
+
+    UserPool:
+      Type: AWS::Cognito::UserPool

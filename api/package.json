@@ -27,6 +27,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^5.2.0",
     "prettier": "^2.5.1",
-    "serverless-deployment-bucket": "^1.5.1"
+    "serverless-deployment-bucket": "^1.5.1",
+    "serverless-offline": "^8.3.1"
   }
 }

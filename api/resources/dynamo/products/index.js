@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk'
 
-const table = 'latam-cto-registry-data-quality-score'
+const table = 'juca-lite-demo'
 
 export const read = async () => {
     const doc = new AWS.DynamoDB.DocumentClient()
@@ -49,5 +49,4 @@ export const find = async (query) => {
     .catch((err) => err)
 }
 
-export default class dynamo {
-}
+export default { read, write, find }

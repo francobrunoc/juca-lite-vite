@@ -55,4 +55,6 @@ $ pnpm run dev
 $ pnpm run build
 $ pnpm run preview
 ```
-# See scripts on package.json
+## See automatic scripts on root package.json
+### Why prerender? https://ssr.vuejs.org/#ssr-vs-prerendering
+### https://sharklabs.com.br/vue-js-prerender-melhorando-o-seo-do-seu-spa/

@@ -6,7 +6,7 @@ const responseBuilder = require('aws-lambda-response-builder')
 const dispatcher = async (event, context) => {
     const router = Router()
     const requestContext = await getRequestContext(event)
-    const { pathParameters } = requestContext
+    const { pathParameters, body } = requestContext
 
     router.http.get('/products/list', () =>
         products.read().then((result) => responseBuilder.buildApiGatewayOkResponse(result))
