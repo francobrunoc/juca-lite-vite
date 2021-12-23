@@ -12,11 +12,12 @@ export default {
   name: "products",
   data() {
     return {
-      products: Object
+      products: []
     }
   },
   async mounted() {
-    this.products = await productsService.listProducts()
+    const { data } = await productsService.listProducts()
+    this.products = data
   }
 }
 </script>

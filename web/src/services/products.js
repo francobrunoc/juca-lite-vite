@@ -1,4 +1,4 @@
-import request from './_request'
+import request from './api/_request'
 
 const service = {
     async listProducts() {

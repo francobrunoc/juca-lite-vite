@@ -10,7 +10,6 @@
   "dependencies": {
     "@aws-amplify/ui-vue": "^2.0.4",
     "@vueuse/core": "^7.2.2",
-    "axios": "^0.23.0",
     "aws-amplify": "^4.3.10",
     "prerender-spa-plugin": "^3.4.0",
     "vue": "^3.2.24",

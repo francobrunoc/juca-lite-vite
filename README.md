@@ -28,6 +28,7 @@ $ pnpm i
 # Deploy frontend (web)
 $ amplify init
 $ amplify add auth
+# When Amplify asks about using existing project configuration select "No" and change "Build Command" and "Start Command" to "pnpm run build" and "pnpm run preview" 
 $ amplify push
 $ amplify add hosting
 $ pnpm i
@@ -35,6 +36,7 @@ $ amplify publish
 # For Amplify UI (See troubleshooting section for Vite)
 https://ui.docs.amplify.aws/?platform=vue
 # Deploy Backend (api)
+# Uncomment section resources on serverless.yml and set the "UserPoolName" and "ClientName"
 $ mkdir api
 $ cd api
 $ npm i -g serverless

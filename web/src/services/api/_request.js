@@ -1,20 +1,12 @@
 import { Auth } from 'aws-amplify'
 import axios from 'axios'
 
-const API_URL = 'https://ar8dcjei95.execute-api.us-east-1.amazonaws.com/dev/'
+const API_URL = 'https://atgtgzd4m0.execute-api.us-east-1.amazonaws.com/dev/'
 
 export default {
     async get(path) {
         let token = await this.token()
-        let config = {
-            headers: {
-                // 'Accept': '*/*',
-                // 'Access-Control-Request-Method': 'GET',
-                // 'Access-Control-Request-Headers': 'authorization'
-            }
-        }
-        config.headers.Authorization = token
-        return await axios.get(API_URL.concat(path || ''), config).then((res) => { return res }).catch((err) => console.error(err))
+        return await axios.get(API_URL.concat(path || ''), { headers: { Authorization: token }})
     },
     async post(path, body) {
         let token = await this.token()

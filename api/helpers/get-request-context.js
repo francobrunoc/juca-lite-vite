@@ -4,7 +4,7 @@ import { unescapeStrings } from './object'
 /**
  * Returns a normalized request context object from an ApiGateway request event.
  *
- * @return {Promise<Object>} requestContext
+ * @return {Object} requestContext
  * @return {String} requestContext.httpMethod
  * @return {Object} requestContext.headers
  * @return {Object} requestContext.multiValueHeaders
@@ -13,9 +13,9 @@ import { unescapeStrings } from './object'
  * @return {Object} requestContext.pathParameters
  * @return {Object} requestContext.session
  * @return {*} requestContext.body
- * @return {Object|null} requestContext.consumer
+ * @return {Object|null} requestContext.session
  */
-export default async (event) => {
+export default (event) => {
   const {
     requestContext,
     httpMethod,
@@ -38,13 +38,11 @@ export default async (event) => {
   try {
     const contentType = headers['content-type'] || headers['Content-Type'] || ''
     if (contentType.search('application/json') > -1) {
-      parsedBody = typeof body === 'string' ? JSON.parse(body) : undefined
+      parsedBody = typeof body === 'string' ? JSON.parse(body) : event.body
     } else if (contentType.search('application/x-www-form-urlencoded') > -1) {
-      parsedBody =
-        typeof body === 'string' ? querystring.parse(body) : undefined
+      parsedBody = typeof body === 'string' ? querystring.parse(body) : event.body
     }
-    parsedSession =
-      typeof session === 'string' ? JSON.parse(session) : undefined
+    parsedSession = typeof session === 'string' ? JSON.parse(session) : event.session
   } catch (err) {
     console.error('Error parsing body or session', err)
   }
@@ -54,8 +52,7 @@ export default async (event) => {
     headers: unescapeStrings(headers) || {},
     multiValueHeaders: unescapeStrings(multiValueHeaders) || {},
     queryStringParameters: unescapeStrings(queryStringParameters) || {},
-    multiValueQueryStringParameters:
-      unescapeStrings(multiValueQueryStringParameters) || {},
+    multiValueQueryStringParameters: unescapeStrings(multiValueQueryStringParameters) || {},
     pathParameters: unescapeStrings(pathParameters) || {},
     body: parsedBody,
     session: parsedSession,

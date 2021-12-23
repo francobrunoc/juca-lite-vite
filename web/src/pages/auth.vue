@@ -5,7 +5,13 @@ import "@aws-amplify/ui-vue/styles.css";
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import awsconfig from '../aws-exports';
 
-Amplify.configure(awsconfig);
+const config = {
+  aws_project_region: 'us-east-1',
+  aws_user_pools_id: 'us-east-1_kypBgJ5qs',
+  aws_user_pools_web_client_id: '1agga45a8bllhd78t5t1oin5ke',
+}
+Amplify.configure(config)
+// Amplify.configure(awsconfig);
 
 export default {
   name: 'Auth',
@@ -21,6 +27,5 @@ export default {
 </script>
 
 <template>
-  <authenticator>
-  </authenticator>
+  <authenticator />
 </template>

@@ -1,20 +1,34 @@
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
-    "env": {
-        "es2021": true,
-        "node": true
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+  },
+  parserOptions: {
+    parser: 'babel-eslint',
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      impliedStrict: true,
     },
-    "extends": [
-        "standard",
-        'prettier'
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 13,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "rules": {
-    }
-};
+  },
+  extends: ['prettier', 'plugin:prettier/recommended'],
+  plugins: ['import', 'prettier'],
+  rules: {
+    'import/no-unresolved': [2, { commonjs: true, amd: true, ignore: ['lib'] }],
+    'import/no-commonjs': ['error'],
+    'no-process-env': ['error'],
+  },
+  globals: {
+    expect: true,
+    process: true,
+    describe: true,
+    before: true,
+    after: true,
+    beforeEach: true,
+    suite: true,
+    test: true,
+    it: true,
+  },
+}
