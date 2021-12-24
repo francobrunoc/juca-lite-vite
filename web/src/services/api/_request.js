@@ -1,7 +1,7 @@
 import { Auth } from 'aws-amplify'
 import axios from 'axios'
 
-const API_URL = 'https://atgtgzd4m0.execute-api.us-east-1.amazonaws.com/dev/'
+const API_URL = import.meta.env.VITE_AWS_API_URL
 
 export default {
     async get(path) {

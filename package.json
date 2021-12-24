@@ -3,15 +3,10 @@
   "private": true,
   "scripts": {
     "bootstrap": "(cd web && pnpm i) && (cd api && pnpm i)",
-    "not-starter": "(npm run web:init)",
-    "starter": "(npm run web:init) && (npm run web:auth) && (npm run web:hosting) && (npm run web:deploy) && (npm run api:init)",
     "dev": "(cd web && pnpm run dev)",
-    "deploy": "(npm run api:deploy && npm run web:deploy)",
-    "api:init": "(cd api && sls)",
-    "api:deploy": "(cd api && sls deploy)",
-    "web:init": "(cd web && amplify init)",
-    "web:auth": "(cd web && amplify add auth && amplify push)",
-    "web:hosting": "(cd web && amplify add hosting)",
-    "web:deploy": "(cd web && amplify publish)"
+    "DEV:api:deploy": "(cd api && STAGE=dev sls deploy)",
+    "DEV:web:deploy": "(cd web && pnpm run build-prod && STAGE=dev sls client deploy)",
+    "PROD:api:deploy": "(cd api && STAGE=prod sls deploy)",
+    "PROD:web:deploy": "(cd web && pnpm run build-prod && STAGE=prod sls client deploy)"
   }
 }

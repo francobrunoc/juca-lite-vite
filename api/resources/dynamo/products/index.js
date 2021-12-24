@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk'
 
-const table = 'juca-lite-demo'
+const table = `juca-lite-${process.env.STAGE}-demo`
 
 export const read = async () => {
     const doc = new AWS.DynamoDB.DocumentClient()

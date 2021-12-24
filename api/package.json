@@ -14,8 +14,7 @@
     "aws-lambda-response-builder": "^1.0.15",
     "aws-sdk": "^2.1046.0",
     "serverless": "^2.68.0",
-    "serverless-bundle": "^4.4.0",
-    "dotenv": "^10.0.0"
+    "serverless-bundle": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

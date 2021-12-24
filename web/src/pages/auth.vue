@@ -3,15 +3,14 @@ import { Authenticator } from "@aws-amplify/ui-vue";
 import "@aws-amplify/ui-vue/styles.css";
 
 import Amplify, { Auth, Hub } from 'aws-amplify';
-import awsconfig from '../aws-exports';
 
 const config = {
-  aws_project_region: 'us-east-1',
-  aws_user_pools_id: 'us-east-1_kypBgJ5qs',
-  aws_user_pools_web_client_id: '1agga45a8bllhd78t5t1oin5ke',
+  aws_project_region: import.meta.env.VITE_AWS_PROJECT_REGION,
+  aws_user_pools_id: import.meta.env.VITE_AWS_USER_POOLS_ID,
+  aws_user_pools_web_client_id: import.meta.env.VITE_AWS_USER_POOLS_WEB_CLIENT_ID,
 }
+
 Amplify.configure(config)
-// Amplify.configure(awsconfig);
 
 export default {
   name: 'Auth',

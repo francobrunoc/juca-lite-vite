@@ -26,6 +26,7 @@ package:
   individually: true
 
 custom:
+  stage: ${opt:stage, env:STAGE, 'dev'}
   bundle:
     linting: false
   deploymentBucket:
@@ -40,12 +41,13 @@ custom:
 provider:
   name: aws
   runtime: nodejs14.x
+  apiName: 'juca-lite-${self:provider.stage}'
   lambdaHashingVersion: 20201221
   deploymentBucket:
-    name: juca-lite-deploy-bucket
+    name: 'juca-lite-${self:provider.stage}-deploy-bucket'
 
 # you can overwrite defaults here
-  stage: dev
+  stage: ${self:custom.stage}
   region: us-east-1
 
   iam:
@@ -62,9 +64,12 @@ provider:
         - Effect: Allow
           Action:
             - 'dynamodb:*'
-          Resource: ['arn:aws:dynamodb:${self:provider.region}:${file(./serverless.js):getAccountId}:table/juca-lite-demo']
+          Resource: ['arn:aws:dynamodb:${self:provider.region}:${file(./serverless.js):getAccountId}:table/juca-lite-${self:provider.stage}-demo']
 
-            # you can add statements to the Lambda function's IAM Role here
+  environment:
+    STAGE: ${env:STAGE}
+
+# you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
 #      Action:
@@ -158,8 +163,10 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
 resources:
   Resources:
+
     ApiGatewayAuthorizer:
       Type: AWS::ApiGateway::Authorizer
       Properties:
@@ -177,7 +184,7 @@ resources:
       Type: "AWS::Cognito::UserPool"
       Properties:
         # Change the property UserPoolName
-        UserPoolName: jucalite_userpool
+        UserPoolName: 'juca-lite-${self:provider.stage}-userpool'
         AutoVerifiedAttributes:
           - email
         MfaConfiguration: OFF
@@ -197,30 +204,10 @@ resources:
       Type: "AWS::Cognito::UserPoolClient"
       Properties:
         # Change the property ClientName
-        ClientName: jucalite_app_clientWeb
+        ClientName: 'jucalite-${self:provider.stage}-app_clientWeb'
         GenerateSecret: False
         UserPoolId:
           Ref: CognitoUserPool
 
     UserPool:
       Type: AWS::Cognito::UserPool
-
-    GatewayResponseDefault4XX:
-      Type: 'AWS::ApiGateway::GatewayResponse'
-      Properties:
-        ResponseParameters:
-          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
-          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
-        ResponseType: DEFAULT_4XX
-        RestApiId:
-          Ref: 'ApiGatewayRestApi'
-
-    GatewayResponseDefault5XX:
-      Type: 'AWS::ApiGateway::GatewayResponse'
-      Properties:
-        ResponseParameters:
-          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
-          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
-        ResponseType: DEFAULT_5XX
-        RestApiId:
-          Ref: 'ApiGatewayRestApi'

@@ -1,8 +1,6 @@
-require('dotenv').config()
-
 import EverestateRouter from '@everestate/serverless-router'
 import { HTTP } from '@everestate/serverless-router-aws'
-import middlewares from './_middlewares'
+// import middlewares from './_middlewares'
 import getRequestContext from '../helpers/get-request-context'
 import responseBuilder from '../helpers/response-builder'
 const STAGE = process.env.STAGE
@@ -22,7 +20,7 @@ export default class Router {
     this.options = { ...options }
     this.router = new EverestateRouter([HTTP])
     // Default middlewares
-    this.use(...middlewares)
+    // this.use(...middlewares)
     // Default router mismatch
     this.mismatch(() => {
       const { path, httpMethod } = this.request
