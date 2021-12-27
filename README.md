@@ -6,6 +6,9 @@
 
 # Basic Tools
 ```
+sudo npm i -g aws-sdk
+```
+```
 sudo npm i -g pnpm
 ```
 ```
@@ -13,6 +16,10 @@ sudo npm i -g serverless
 ```
 
 ## Setup
+
+```
+aws configure
+```
 
 ### See automatic scripts on root package.json
 

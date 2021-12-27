@@ -1,0 +1,16 @@
+service: juca-lite-web
+
+provider:
+  name: aws
+  stage: ${self:custom.stage}
+
+plugins:
+  - '@rodrigogs/serverless-finch'
+
+custom:
+  stage: ${opt:stage, env:STAGE, 'dev'}
+  client:
+    bucketName: 'juca-lite-${self:provider.stage}-web-app'
+    distributionFolder: dist
+
+

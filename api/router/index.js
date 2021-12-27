@@ -12,7 +12,7 @@ export default class Router {
    * @param {Object} [options] Global options object. These options can be overwritten in the method.
    * @param {Object} [options.hooks]
    */
-  constructor(event, context, options) {
+  constructor (event, context, options) {
     let { path } = event
     if (path.startsWith(`/${STAGE}`)) path = path.replace(`/${STAGE}`, '')
     this.request = getRequestContext({ ...event, path })
@@ -38,7 +38,7 @@ export default class Router {
    * @param {Object} [options.hooks]
    * @private
    */
-  _wrapHttpMethod(method, path, controller, options) {
+  _wrapHttpMethod (method, path, controller, options) {
     options = options || this.options || {}
     options.hooks = options.hooks || {}
     this.router.http[method](path, async () => {
@@ -58,7 +58,7 @@ export default class Router {
   /**
    * @param {Function} middlewares
    */
-  use(...middlewares) {
+  use (...middlewares) {
     middlewares.forEach((middleware) => this.router.use(middleware))
     return this
   }
@@ -67,7 +67,7 @@ export default class Router {
    * @param {String} path
    * @param {Function} controller
    */
-  get(path, controller) {
+  get (path, controller) {
     this._wrapHttpMethod('get', path, controller)
     return this
   }
@@ -76,7 +76,7 @@ export default class Router {
    * @param {String} path
    * @param {Function} controller
    */
-  post(path, controller) {
+  post (path, controller) {
     this._wrapHttpMethod('post', path, controller)
     return this
   }
@@ -85,7 +85,7 @@ export default class Router {
    * @param {String} path
    * @param {Function} controller
    */
-  put(path, controller) {
+  put (path, controller) {
     this._wrapHttpMethod('put', path, controller)
     return this
   }
@@ -94,7 +94,7 @@ export default class Router {
    * @param {String} path
    * @param {Function} controller
    */
-  patch(path, controller) {
+  patch (path, controller) {
     this._wrapHttpMethod('path', path, controller)
     return this
   }
@@ -103,7 +103,7 @@ export default class Router {
    * @param {String} path
    * @param {Function} controller
    */
-  delete(path, controller) {
+  delete (path, controller) {
     this._wrapHttpMethod('delete', path, controller)
     return this
   }
@@ -111,7 +111,7 @@ export default class Router {
   /**
    * @param {Function} handler
    */
-  mismatch(handler) {
+  mismatch (handler) {
     this.router.mismatch(handler)
     return this
   }
@@ -119,7 +119,7 @@ export default class Router {
   /**
    * @returns {Promise<*|(*&{headers: *&{"Access-Control-Allow-Origin": string, "Access-Control-Allow-Credentials": boolean, "Access-Control-Allow-Headers": string, "Content-Type": string}, body: any, statusCode: number})>}
    */
-  async dispatch() {
+  async dispatch () {
     try {
       return await this.router.dispatch(this.request, this.context)
     } catch (err) {

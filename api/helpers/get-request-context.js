@@ -26,7 +26,7 @@ export default (event) => {
     multiValueQueryStringParameters,
     pathParameters,
     path,
-    resource,
+    resource
   } = event
 
   const { authorizer } = requestContext || {}
@@ -57,6 +57,6 @@ export default (event) => {
     body: parsedBody,
     session: parsedSession,
     path,
-    resource,
+    resource
   }
 }

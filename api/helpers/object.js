@@ -25,8 +25,8 @@ export const unescapeStrings = (objectOrArray) =>
     isObject(objectOrArray)
       ? { ...objectOrArray }
       : Array.isArray(objectOrArray)
-      ? [...objectOrArray]
-      : objectOrArray
+        ? [...objectOrArray]
+        : objectOrArray
   )
 
 /**
@@ -40,7 +40,7 @@ export const unescapeStrings = (objectOrArray) =>
 export const deepAssign = (original, ...objects) => {
   const allKeys = new Set([
     ...Object.keys(original),
-    ...objects.map((obj) => Object.keys(obj)).flat(),
+    ...objects.map((obj) => Object.keys(obj)).flat()
   ])
   return objects.reduce((object, current) => {
     if (!current) return object

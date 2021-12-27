@@ -15,5 +15,5 @@ export {
   ConflictError,
   NotFoundError,
   NotImplementedError,
-  UnauthorizedError,
+  UnauthorizedError
 }

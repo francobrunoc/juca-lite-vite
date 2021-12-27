@@ -6,14 +6,14 @@ import {
   MethodNotAllowedError,
   NotFoundError,
   NotImplementedError,
-  UnauthorizedError,
+  UnauthorizedError
 } from '../errors/api'
 
 const defaultHeaders = {
   'Content-Type': 'application/json',
   'Access-Control-Allow-Credentials': true,
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': '*',
+  'Access-Control-Allow-Headers': '*'
 }
 
 // Generic responses
@@ -26,18 +26,17 @@ export const generic = (options) => {
     ...options,
     statusCode,
     headers,
-    body,
+    body
   }
 }
 
 export const genericError = (error) => {
-
   const status = error.status || error.statusCode || (error.response ? error.response.status : 500)
   const message = error.message || 'Internal Server Error'
 
   return generic({
     statusCode: status,
-    body: { message },
+    body: { message }
   })
 }
 
@@ -88,7 +87,7 @@ export default {
   success: {
     ok,
     created,
-    noContent,
+    noContent
   },
   errors: {
     badRequest,
@@ -98,6 +97,6 @@ export default {
     methodNotAllowed,
     conflict,
     internalServerError,
-    notImplemented,
-  },
+    notImplemented
+  }
 }

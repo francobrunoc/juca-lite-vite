@@ -28,7 +28,7 @@ package:
 custom:
   stage: ${opt:stage, env:STAGE, 'dev'}
   bundle:
-    linting: false
+    linting: true
   deploymentBucket:
     versioning: true
     accelerate: true
