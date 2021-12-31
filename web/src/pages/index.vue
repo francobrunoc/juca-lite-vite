@@ -6,6 +6,10 @@ const go = () => {
   if (name.value)
     router.push(`/hi/${encodeURIComponent(name.value)}`)
 }
+
+const auth = () => {
+  router.push('auth')
+}
 </script>
 
 <template>
@@ -44,6 +48,14 @@ const go = () => {
         @click="go"
       >
         Go
+      </button>
+    </div>
+    <div>
+      <button
+        class="m-3 text-sm btn"
+        @click="auth"
+      >
+        Login
       </button>
     </div>
   </div>

@@ -6,14 +6,15 @@
     "build-prod": "vite build --base=http://juca-lite-prod-web-app.s3-website-us-east-1.amazonaws.com/",
     "preview": "vite preview",
     "lint": "eslint . --ext=.ts,.vue",
-    "test": "vitest"
+    "test": "vitest",
+    "dist:build": "vitepress build dist",
+    "dist:serve": "vitepress serve dist"
   },
   "dependencies": {
     "@aws-amplify/ui-vue": "^2.0.4",
     "@vueuse/core": "^7.2.2",
     "axios": "^0.24.0",
     "aws-amplify": "^4.3.10",
-    "prerender-spa-plugin": "^3.4.0",
     "vue": "^3.2.24",
     "vue-router": "^4.0.12"
   },
