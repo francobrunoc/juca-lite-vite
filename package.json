@@ -5,8 +5,8 @@
     "bootstrap": "(cd web && pnpm i) && (cd api && pnpm i)",
     "dev": "(cd web && pnpm run dev)",
     "DEV:api:deploy": "(cd api && STAGE=dev sls deploy)",
-    "DEV:web:deploy": "(cd web && pnpm run build-prod && STAGE=dev sls client deploy)",
+    "DEV:web:deploy": "(cd web && pnpm run build-prod && STAGE=dev NO_CONFIRM=true sls client deploy)",
     "PROD:api:deploy": "(cd api && STAGE=prod sls deploy)",
-    "PROD:web:deploy": "(cd web && pnpm run build-prod && STAGE=prod sls client deploy)"
+    "PROD:web:deploy": "(cd web && pnpm run build-prod && STAGE=prod NO_CONFIRM=true sls client deploy)"
   }
 }

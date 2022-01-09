@@ -2,13 +2,14 @@
 const name = ref('')
 
 const router = useRouter()
+
 const go = () => {
   if (name.value)
     router.push(`/hi/${encodeURIComponent(name.value)}`)
 }
 
 const auth = () => {
-  router.push('auth')
+  router.push('/auth')
 }
 </script>
 

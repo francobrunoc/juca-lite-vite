@@ -1,8 +1,7 @@
 <script>
-import { Authenticator } from "@aws-amplify/ui-vue";
-import "@aws-amplify/ui-vue/styles.css";
-
-import Amplify, { Auth, Hub } from 'aws-amplify';
+import { Authenticator } from "@aws-amplify/ui-vue"
+import "@aws-amplify/ui-vue/styles.css"
+import { Amplify, Auth, Hub } from 'aws-amplify'
 
 const config = {
   aws_project_region: import.meta.env.VITE_AWS_PROJECT_REGION,
@@ -18,13 +17,13 @@ export default {
   async mounted() {
     await Auth.signOut()
     Hub.listen('auth', (data) => {
+      console.log('A new auth event has happened: ', data.payload.event)
       if (data.payload.event === 'signIn') this.$router.push('/products')
-      console.log('A new auth event has happened: ', data.payload.event);
     })
   }
 }
 </script>
 
 <template>
-  <authenticator />
+  <Authenticator></Authenticator>
 </template>

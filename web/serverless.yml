@@ -10,7 +10,7 @@ plugins:
 custom:
   stage: ${opt:stage, env:STAGE, 'dev'}
   client:
-    bucketName: 'juca-lite-${self:provider.stage}-web-app'
-    distributionFolder: dist/.vitepress/dist
+    bucketName: 'juca-lite-${self:provider.stage}-web-dist'
+    distributionFolder: dist
 
 
